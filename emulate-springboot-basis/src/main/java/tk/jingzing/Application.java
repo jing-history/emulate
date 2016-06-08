@@ -1,13 +1,12 @@
 package tk.jingzing;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.boot.web.servlet.ServletComponentScan;
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.servlet.DispatcherServlet;
 
 /**
  * 静态资源：优先级顺序为：META/resources > resources > static > public
@@ -17,6 +16,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 @ServletComponentScan
 public class Application extends SpringBootServletInitializer {
 
+    private static final Logger logger = LoggerFactory.getLogger(Application.class);
     /**
      * 使用代码注册Servlet（不需要@ServletComponentScan注解）
      *

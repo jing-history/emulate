@@ -45,6 +45,24 @@
             <artifactId>jstl</artifactId>
         </dependency>
 
+        <!-- MYSQL -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <!-- Spring Boot JDBC -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+
+        <!-- log -->
+        <dependency>
+            <groupId>net.kencochrane.raven</groupId>
+            <artifactId>raven-logback</artifactId>
+            <version>6.0.0</version>
+        </dependency>
+
         <!-- web -->
         <dependency>
             <groupId>org.webjars</groupId>
