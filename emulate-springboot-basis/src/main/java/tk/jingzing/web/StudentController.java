@@ -3,6 +3,7 @@ package tk.jingzing.web;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tk.jingzing.entity.Student;
@@ -16,6 +17,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/stu")
+@ComponentScan(basePackages = { "tk.jingzing.service" })
 public class StudentController {
 
     private static final Logger logger = LoggerFactory.getLogger(StudentController.class);
