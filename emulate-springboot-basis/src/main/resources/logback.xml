@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <!-- encoder 默认配置为PatternLayoutEncoder -->
+    <!--<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        &lt;!&ndash; encoder 默认配置为PatternLayoutEncoder &ndash;&gt;
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
-    </appender>
+    </appender>-->
 
     <!--<appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
@@ -29,9 +29,9 @@
         </encoder>
     </appender>-->
 
-    <root level="INFO">
+    <!--<root level="INFO">
         <appender-ref ref="STDOUT" />
-    </root>
+    </root>-->
 
     <!--<appender name="Sentry" class="net.kencochrane.raven.logback.SentryAppender">
         <dsn>https://publicKey:secretKey@host:port/1?options</dsn>
