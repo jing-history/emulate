@@ -73,5 +73,24 @@
     <!-- 事务管理器 -->
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager" p:sessionFactory-ref="sessionFactory" />
 
+    <!-- 配置事务边界 -->
+    <aop:config>
+        <aop:pointcut id="serviceMethod" expression="execution(* tk.jingzing.redis.dao.*.*(..))" />
+        <aop:advisor pointcut-ref="serviceMethod" advice-ref="txAdvice" />
+    </aop:config>
 
+    <!--配置事务的传播特性 -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <!-- 如果service的方法名不是以下开头的，就无法修改数据，例如插入，更新 只能查询readonly -->
+            <tx:method name="save*" propagation="REQUIRED" />
+            <tx:method name="del*" propagation="REQUIRED" />
+            <tx:method name="update*" propagation="REQUIRED" />
+            <tx:method name="excute*" propagation="REQUIRED" />
+            <tx:method name="*" propagation="REQUIRED" read-only="true" />
+        </tx:attributes>
+    </tx:advice>
+
+    <!--启动spring事务注解功能 -->
+    <tx:annotation-driven transaction-manager="transactionManager" />
 </beans>
