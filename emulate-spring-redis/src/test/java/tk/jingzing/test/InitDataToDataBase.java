@@ -15,9 +15,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
+import tk.jingzing.dubbo.bean.Note;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.*;
 
 /**
@@ -58,7 +60,7 @@ public class InitDataToDataBase extends AbstractTransactionalJUnit4SpringContext
 
             // 【2】多线程插入、CountDownLatch是用来解决防止session关闭的问题
             CountDownLatch latch = new CountDownLatch(currentHashMap.size());
-        //    List<Note> listNote = new StoreToDataBaseByThread(currentHashMap, session, latch).insertToDatabase();
+            List<Note> listNote = new StoreToDataBaseByThread(currentHashMap, session, latch).insertToDatabase();
             latch.await();
 
         }catch (Exception e){
