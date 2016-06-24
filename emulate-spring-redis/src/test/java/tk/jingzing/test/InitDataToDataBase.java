@@ -63,6 +63,13 @@ public class InitDataToDataBase extends AbstractTransactionalJUnit4SpringContext
             List<Note> listNote = new StoreToDataBaseByThread(currentHashMap, session, latch).insertToDatabase();
             latch.await();
 
+            // 因为用的是durid连接池，获取数据库连接和创建jdbc 必须要在一个线程里面。所以采用串行保存
+            for (Note note : listNote) {
+                session.save(note);
+            }
+            long endTime = System.currentTimeMillis();
+            log.info("插入数据库耗时：" + (endTime - beginTime) + "ms");
+            System.out.println("end");
         }catch (Exception e){
             logger.error("" + e.getLocalizedMessage());
         }

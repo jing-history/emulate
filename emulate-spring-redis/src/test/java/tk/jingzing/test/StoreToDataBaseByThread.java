@@ -15,6 +15,9 @@ import tk.jingzing.dubbo.bean.Note;
 import tk.jingzing.dubbo.bean.NoteBook;
 import tk.jingzing.dubbo.bean.NoteBookGroup;
 
+import java.io.UnsupportedEncodingException;
+import java.sql.Blob;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
@@ -74,14 +77,39 @@ public class StoreToDataBaseByThread {
                         Note note = new Note();
                         NoteBook nb = new NoteBook();
                         String content = getHtmlByPath(path);
-//                        Blob clobContent;
+                        Blob clobContent;
+                        try {
+                            clobContent = session.getLobHelper().createBlob(content.getBytes("utf-8"));
+                            note.setBlobContent(clobContent);
+                        } catch (UnsupportedEncodingException e) {
+                            e.printStackTrace();
+                        }
+                        note.setFromUrl(path);
+                        note.setNoteName(title);
+                        note.setAuthorName("Louis Wang");
+                        note.setCreatedate(new Date());
+                        if (content.contains("error:httpClients读取网页内容失败")) {
+                            note.setFlag(1);
+                        } else {
+                            note.setFlag(0);
+                        }
+                        // 随机存放笔记本名称
+                        if (random.nextInt(2) == 1) {
+                            nb.setNoteBookId(1);
+                        } else {
+                            nb.setNoteBookId(2);
+                        }
+                        note.setNoteBookGroup(noteBookGroup);
+                        note.setNoteBook(nb);
+                        noteList.add(note);
+                        latch.countDown();
                     }
                 }.start();
             }
         }catch (Exception e){
             logger.error("爬虫抓取网页内容写入到数据库失败！" + e.getLocalizedMessage());
         }
-        return null;
+        return noteList;
     }
 
     private String getHtmlByPath(String url) {
