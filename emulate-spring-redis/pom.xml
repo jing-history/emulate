@@ -248,6 +248,11 @@
             <artifactId>httpclient</artifactId>
             <version>4.3.1</version>
         </dependency>
+        <dependency>
+            <groupId>org.htmlparser</groupId>
+            <artifactId>htmlparser</artifactId>
+            <version>2.1</version>
+        </dependency>
     </dependencies>
 
     <!-- 不是web项目 没有web.xml -->

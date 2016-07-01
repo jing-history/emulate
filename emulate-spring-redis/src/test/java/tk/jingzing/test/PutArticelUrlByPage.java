@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
+ * 使用HttpClient和HtmlParser实现简易爬虫
+ * http://www.shangxueba.com/jingyan/98001.html
  * Created by Louis Wang on 2016/6/21.
  */
 
