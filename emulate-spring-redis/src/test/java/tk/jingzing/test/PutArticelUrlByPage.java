@@ -61,12 +61,20 @@ public class PutArticelUrlByPage implements Runnable {
     }
 
     private void putUrl(String html) {
-        String[] bb = html.split("<div class=\"/media-left/");
+        /*String[] bb = html.split("<div class=\"/media newpost-item/");
         for (int i = 1; i < bb.length; i++) {
             String url = BEGIN_URL + bb[i].split("\"")[0];
             String title = bb[i].split("title=\"")[1].split("\"")[0] + ".html";
             title = title.replaceAll("\\/", "").replaceAll("\\*", "").replaceAll("\\?", "").replaceAll("\\|", "");
             currentHashMap.put(title, url);
-        }
+        }*/
+
+        currentHashMap.put("标题1", "www.baidu.com");
+        currentHashMap.put("标题2", "www.baidu.com");
+        currentHashMap.put("标题3", "www.baidu.com");
+        currentHashMap.put("标题4", "www.baidu.com");
+        currentHashMap.put("标题5", "www.baidu.com");
+        currentHashMap.put("标题6", "www.baidu.com");
     }
+
 }
