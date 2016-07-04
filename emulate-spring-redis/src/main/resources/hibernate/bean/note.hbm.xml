@@ -3,7 +3,7 @@
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="tk.jingzing.dubbo.bean">
-    <!--<class name="Note" table="tcnote">
+    <class name="Note" table="tcnote">
         <id name="noteId" column="note_id">
             <generator class="identity"/>
         </id>
@@ -15,5 +15,5 @@
         <property name="flag" not-null="true" column="flag" type="java.lang.Integer"></property>
         <many-to-one name="noteBook" column="noteBook" lazy="false" not-null="true"></many-to-one>
         <many-to-one name="noteBookGroup" column="noteBookGroup" lazy="false" not-null="true"></many-to-one>
-    </class>-->
+    </class>
 </hibernate-mapping>
