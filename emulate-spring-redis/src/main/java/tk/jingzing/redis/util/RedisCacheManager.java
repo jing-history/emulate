@@ -30,6 +30,8 @@ public class RedisCacheManager {
 	private String maxtotal;
 	@Value("${maxidle}")
 	private String maxidle;
+	@Value("${maxActive}")
+	private String maxActive;
 	@Value("${minidle}")
 	private String minidle;
 	@Value("${maxwaitmillis}")
@@ -64,6 +66,10 @@ public class RedisCacheManager {
 		poolConfig.setMaxTotal(Integer.parseInt(maxtotal));
 		poolConfig.setMinIdle(Integer.parseInt(minidle));
 		poolConfig.setMaxWaitMillis(Integer.parseInt(maxwaitmillis));
+		//连接耗尽时是否阻塞, false报异常,ture阻塞直到超时, 默认true
+	//	poolConfig.setBlockWhenExhausted(true);
+		//设置的逐出策略类名, 默认DefaultEvictionPolicy(当连接超过最大空闲时间,或连接数超过最大空闲连接数)
+	//	poolConfig.setEvictionPolicyClassName("org.apache.commons.pool2.impl.DefaultEvictionPolicy");
 	}
 	
 	private void initPoolMap() {

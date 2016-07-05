@@ -44,6 +44,7 @@ public class NoteServiceImp implements NoteService, BaseService<Note>{
             // dubbo 调用的时候防止java.sql.Blob cannot be assigned from null ，也就是blob字段不能为空
             delalBlob(noteList);
         } catch (Exception e) {
+            e.printStackTrace();
             log.error(" List<Note> findAll()查询失败！" + e.getLocalizedMessage());
         }finally {
             log.info("回收jedis连接");
