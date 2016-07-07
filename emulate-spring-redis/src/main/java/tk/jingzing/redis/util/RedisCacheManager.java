@@ -62,6 +62,7 @@ public class RedisCacheManager {
 		poolConfig = new JedisPoolConfig();
 		poolConfig.setTestOnBorrow(testwhileidle.equals("true") ? true : false);
 		poolConfig.setTestWhileIdle(testonborrow.equals("true") ? true : false);
+	//	poolConfig.setMaxActive(2);
 		poolConfig.setMaxIdle(Integer.parseInt(maxidle));
 		poolConfig.setMaxTotal(Integer.parseInt(maxtotal));
 		poolConfig.setMinIdle(Integer.parseInt(minidle));
