@@ -1,6 +1,7 @@
 package tk.jingzing.redis.performance;
 
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.Test;
@@ -50,13 +51,13 @@ public class RedisCompareDataBase {
     @Test
     // @Transactional
     public void selectAll(){
-        /*final Session session = sessionFactory.openSession();
+        final Session session = sessionFactory.openSession();
         long time1 = System.currentTimeMillis();
         Query query = session.createQuery("from Note");
         List<Note> objectList = query.list();
         for (Note note : objectList) {
             log.info(note.toString());
-        }*/
+        }
 
         long time2 = System.currentTimeMillis();
         List<Note> noteList = baseService.findAll();
