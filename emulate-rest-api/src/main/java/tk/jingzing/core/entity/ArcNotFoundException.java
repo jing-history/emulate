@@ -1,4 +1,4 @@
-package tk.jingzing.web.controller.handler.global;
+package tk.jingzing.core.entity;
 
 /**
  * ArcNotFoundException : 查询时如果未查找到相关数据, 抛出该异常

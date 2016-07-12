@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import tk.jingzing.core.entity.ArcExceptionResponse;
+import tk.jingzing.core.entity.ArcNotFoundException;
 
 import javax.servlet.http.HttpServletRequest;
 
