@@ -10,7 +10,7 @@
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!-- 扫描controller层 -->
-    <context:component-scan base-package="tk.jingzing.controller" />
+    <context:component-scan base-package="tk.jingzing.web.controller" />
 
     <!-- 启用spring mvc 注解 -->
     <mvc:annotation-driven>
