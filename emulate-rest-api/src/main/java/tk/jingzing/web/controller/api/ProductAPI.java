@@ -34,6 +34,7 @@ public class ProductAPI {
      * @return
      */
     @RequestMapping(value = "/product", method = RequestMethod.POST)
+    @ResponseBody
     public ArcResponse<Product> addProduct(@RequestBody Product product){
 
         productService.addModel(product);

@@ -1,6 +1,8 @@
 /**
  * product.js : 商品操作
- * Created by Administrator on 2016/7/13.
+ *
+ * @author arccode
+ * @since 2015-04-16 11:17
  */
 $(function () {
 
@@ -18,7 +20,7 @@ $(function () {
      */
     var vm = new Vue({
         el: '#root',
-        data:{
+        data: {
             method: 'POST',
             urls: null,
             url: null,
@@ -29,8 +31,10 @@ $(function () {
 
             this.$emit('init');
         },
-        events:{
-            submit:function () {
+        events: {
+
+            submit: function() {
+
                 if(vm.method == 'GET') {
 
                     vm.request = null;
@@ -41,13 +45,13 @@ $(function () {
                         .end(function (err, res) {
                             vm.response = res.text;
                         })
-                }else if(vm.method == 'POST'){
+                } else if(vm.method == 'POST') {
+
                     vm.request = null;
                     vm.response = null;
 
                     var product = {name: 'Apple Watch SPORT', description: 'Sport 系列的表壳材料为轻巧的银色及深空灰色阳极氧化铝金属，强化 Ion-X 玻璃材质为显示屏提供保护。搭配高性能 Fluoroelastomer 表带，共有 5 款缤纷色彩。'}
                     vm.request = JSON.stringify(product);
-
                     req
                         .post(vm.url)
                         .set('Content-Type', 'application/json')
@@ -55,7 +59,7 @@ $(function () {
                         .end(function (err, res) {
                             vm.response = res.text;
                         })
-                }else if(vm.method == 'PUT') {
+                } else if(vm.method == 'PUT') {
 
                     vm.request = null;
                     vm.response = null;
@@ -69,7 +73,7 @@ $(function () {
                         .end(function (err, res) {
                             vm.response = res.text;
                         })
-                }else if(vm.method == 'DELETE') {
+                } else if(vm.method == 'DELETE') {
 
                     vm.request = null;
                     vm.response = null;
@@ -80,10 +84,10 @@ $(function () {
                             vm.response = res.text;
                         })
                 }
-            },
 
+            },
             // 初始化数据
-            init:function () {
+            init: function() {
                 req
                     .get('/rest/api/selects')
                     .end(function (res) {
@@ -91,12 +95,14 @@ $(function () {
                         vm.urls = obj;
                         vm.url = obj[0].value;
                     })
-            },
-            methods: {
-                onSubmit: function() {
-                    this.$emit('submit');
-                }
+            }
+        },
+        methods: {
+            onSubmit: function() {
+                this.$emit('submit');
             }
         }
     })
+
 })
+
