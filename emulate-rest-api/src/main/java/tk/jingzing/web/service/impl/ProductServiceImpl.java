@@ -2,6 +2,7 @@ package tk.jingzing.web.service.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 import tk.jingzing.core.entity.ArcNotFoundException;
 import tk.jingzing.core.util.ApplicationUtils.ApplicationUtils;
 import tk.jingzing.web.model.Product;
@@ -14,7 +15,7 @@ import java.util.List;
  * ProductServiceImpl : 商品业务接口实现
  * Created by Louis Wang on 2016/7/12.
  */
-
+@Service
 public class ProductServiceImpl implements ProductService {
 
     private final Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);
