@@ -1,7 +1,9 @@
 package tk.jingzing.authorization.manager.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
+import org.springframework.stereotype.Component;
 import tk.jingzing.authorization.manager.TokenManager;
 import tk.jingzing.authorization.model.TokenModel;
 import tk.jingzing.config.Constants;
@@ -13,11 +15,12 @@ import java.util.concurrent.TimeUnit;
  * 通过Redis存储和验证token的实现类
  * Created by Louis Wang on 2016/7/13.
  */
-
+@Component
 public class RedisTokenManager implements TokenManager {
 
     private RedisTemplate<Long, String> redis;
 
+    @Autowired
     public void setRedis(RedisTemplate redis) {
         this.redis = redis;
         //泛型设置成Long后必须更改对应的序列化方案
