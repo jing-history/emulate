@@ -1,4 +1,4 @@
-package tk.jingzing;
+package tk.jingzing.model;
 
 import tk.jingzing.config.ResultStatus;
 
