@@ -20,7 +20,9 @@ public class FindInPartiallySortedMatrix {
     }
 
     /**
-     *
+     * @todo: 规律是首先选取数组中右上角数字，如果该数字等于要查找的数字，查找过程结束；
+     * 如果该数字大于要查找的数字，剔除这个数字所在的列；如果该数字小于要查找的数字，
+     * 剔除这个数字所在的行。
      * @param matrix
      * @param rows
      * @param columns
@@ -28,28 +30,32 @@ public class FindInPartiallySortedMatrix {
      * @return
      */
    public boolean find(int[][] matrix, int rows, int columns, int number){
-        boolean found = false;
+       boolean found = false;
 
-       if(matrix != null && rows > 0 && columns > 0){
+       if(matrix != null && rows > 0 && columns > 0)
+       {
            int row = 0;
            int column = columns - 1;
-           while (row < rows && column >= 0){
-               if(matrix[row][row * columns + column] == number){
+           while(row < rows && column >=0)
+           {
+               if(matrix[row][column] == number)
+               {
                    found = true;
                    break;
-               }else if(matrix[row][row * columns + column] > number){
-                    -- column;
-               }else
+               }
+               else if(matrix[row][column] > number)
+                   -- column;
+               else
                    ++ row;
-
            }
        }
+
        return found;
    }
 
     public static void main(String[] args) {
         int[][] arrys = new int[][]{{1,2,8,9},{2,4,9,12},{4,7,10,13},{6,8,11,15}};
         FindInPartiallySortedMatrix test = new FindInPartiallySortedMatrix();
-        System.out.println(test.find(arrys, 4, 4, 7));
+        System.out.println(test.find(arrys, 4, 4, 18));
     }
 }
