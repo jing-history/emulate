@@ -5,74 +5,76 @@ package tk.jingzing.jzoffer;
  * 如果从前面往后面替换，时间复杂度为O(n2)
  * 如果从后面往前面替换，时间复杂度为O(n)
  * Created by Louis Wang on 2016/7/19.
+ *
+ * 时间复杂度为o(n2)不足以拿到offer
+
+ 考虑时间复杂度为O(n)的解法，搞定offer就靠它了
+
+ 算法描述如下：
+
+ 从字符串的后面开始复制和替换，首先准备两个指针，p1和p2，p1指向原始字符串的末尾，p2指向替换后字符串的末尾，接下来，向前移动指针p1，
+ 逐个把它指向的字符复制到p2，碰到一个空格之后，把p1向前移动1格，在p2处插入字符串“20%”，由于“20%”长度为3，同时也要把p2向前移动3格。直到p1=p2，表明所有空格都已经替换完毕。
+
  */
 
 public class ReplaceBlank {
 
+    private static String testString = "hellow new world!";
 
-    /*length 为字符数组string的总容量*/
-    public static void ReplaceBlank(char string[], int length){
-        if(string == null && length <= 0)
-            return;
-
-    /*originalLength 为字符串string的实际长度*/
-        int originalLength = 0;
-        int numberOfBlank = 0;
-        int i = 0;
-        while(string[i] != '\0')
-        {
-            ++ originalLength;
-
-            if(string[i] == ' ')
-                ++ numberOfBlank;
-
-            ++ i;
-        }
-
-    /*newLength 为把空格替换成'%20'之后的长度*/
-        int newLength = originalLength + numberOfBlank * 2;
-        if(newLength > length)
-            return;
-
-        int indexOfOriginal = originalLength;
-        int indexOfNew = newLength;
-        while(indexOfOriginal >= 0 && indexOfNew > indexOfOriginal)
-        {
-            if(string[indexOfOriginal] == ' ')
-            {
-                string[indexOfNew --] = '0';
-                string[indexOfNew --] = '2';
-                string[indexOfNew --] = '%';
+    // 计算字符串中包含的空格个数
+    public static int getBlankNum(String testString){
+        int count = 0;
+        for (int i = 0; i < testString.length(); i++){
+            String tempString = String.valueOf(testString.charAt(i));
+            if(tempString.equals(" ")){
+                count++;
             }
-            else
-            {
-                string[indexOfNew --] = string[indexOfOriginal];
-            }
-
-            -- indexOfOriginal;
         }
+        return count;
     }
 
-    public static void test(String testName, char string[], int length, String expected){
-        if(testName != null)
-            System.out.printf("%s begins: ", testName);
+    // 打印char[]数组
+    public static void printArray(char[] testArray) {
+        for (char i : testArray) {
+            System.out.print(i);
+        }
+        System.out.println();
+    }
 
-        ReplaceBlank(string, length);
+    // 将字符串空格转换为20%
+    public static void replaceAllBlank(String testString){
+        if (testString == null || testString.length() <= 0) {
+            return;
+        }
 
-        if(expected == null && string == null)
-             System.out.printf("passed.\n");
-        else if(expected == null && string != null)
-             System.out.printf("failed.\n");
-        /*else if(strcmp(string, expected) == 0)
-             System.out.printf("passed.\n");*/
-        else
-             System.out.printf("failed.\n");
+        // 字符数组初始长度
+        int length = testString.length();
+        // 字符数组增加长度后
+        int newLength = getBlankNum(testString) * 2 + testString.length();
+
+        char[] tempArray = new char[newLength];
+        System.arraycopy(testString.toCharArray(),0,tempArray,0,testString.toCharArray().length);
+
+        int indexofOriginal = length - 1;
+        int indexofNew = newLength - 1;
+        System.out.println("未替换空格时的字符串：");
+        printArray(tempArray);
+
+        while (indexofOriginal >= 0 && indexofOriginal != indexofNew){
+            if(tempArray[indexofOriginal] == ' '){
+                tempArray[indexofNew--] = '%';
+                tempArray[indexofNew--] = '2';
+                tempArray[indexofNew--] = '0';
+            }else {
+                tempArray[indexofNew--] = tempArray[indexofOriginal];
+            }
+            indexofOriginal--;
+        }
+        System.out.println("替换空格后的字符串：");
+        printArray(tempArray);
     }
 
     public static void main(String[] args) {
-        int length = 100;
-        String str = "hello world";
-        char string[] = str.toCharArray();
-        test("Test1", string, length, "hello%20world");
+        replaceAllBlank(testString);
     }
 }
