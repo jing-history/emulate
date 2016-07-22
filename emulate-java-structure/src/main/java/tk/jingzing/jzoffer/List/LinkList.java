@@ -36,22 +36,41 @@ public class LinkList implements List {
     }
 
     public int size() {
-        return 0;
+        return this.size;
     }
 
     public boolean isEmpty() {
-        return false;
+        return size == 0;
     }
 
     public void insert(int index, Object obj) throws Exception {
-
+        if(index <0 || index > size)
+        {
+            throw new Exception("参数错误！");
+        }
+        index(index - 1);//定位到要操作结点的前一个结点对象。
+        current.setNext(new Node(obj, current.next));
+        size++;
     }
 
     public void delete(int index) throws Exception {
-
+        //判断链表是否为空
+        if(isEmpty()){
+            throw new Exception("链表为空，无法删除！");
+        }
+        if(index < 0 || index > size){
+            throw new Exception("参数错误！");
+        }
+        index(index - 1);   //定位到要操作结点的前一个结点对象。
+        current.setNext(current.next.next);
+        size--;
     }
 
     public Object get(int index) throws Exception {
-        return null;
+        if(index < -1 || index > size - 1){
+            throw new Exception("参数非法！");
+        }
+        index(index);
+        return current.getElement();
     }
 }
