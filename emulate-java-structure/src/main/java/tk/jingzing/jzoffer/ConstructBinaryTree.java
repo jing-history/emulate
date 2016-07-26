@@ -30,7 +30,7 @@ public class ConstructBinaryTree {
             return null;
         }
         try {
-            return ConstructCore(preOrder, 0, preOrder.length - 1, inOrder, 0,inOrder.length - 1);
+            return ConstructCore(preOrder, 0, preOrder.length - 1, inOrder, 0,inOrder.length - 1,"Root");
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -48,10 +48,10 @@ public class ConstructBinaryTree {
      * @return
      */
     public static BinaryTreeNode ConstructCore(int[] preOrder,int startPreIndex, int endPreIndex,
-                                               int[] inOrder,int startInIndex, int endInIndex) throws InvalidPutException {
+                                               int[] inOrder,int startInIndex, int endInIndex,String type) throws InvalidPutException {
 
         int rootValue = preOrder[startPreIndex];
-        System.out.println("rootValue = " + rootValue);
+        System.out.println(type + " = " + rootValue);
         BinaryTreeNode root = new BinaryTreeNode(rootValue);
 
         // 只有一个元素
@@ -77,6 +77,7 @@ public class ConstructBinaryTree {
 
         }
 
+        //*****这块理解的不够深入
         int leftLength = rootInIndex - startInIndex;
 
         int leftPreOrderEndIndex = startPreIndex + leftLength;
@@ -85,14 +86,16 @@ public class ConstructBinaryTree {
             // 构建左子树
             root.leftNode = ConstructCore(preOrder, startPreIndex + 1,
                     leftPreOrderEndIndex, inOrder, startInIndex,
-                    rootInIndex - 1);
+                    rootInIndex - 1,"Left");
         }
 
         if (leftLength < endPreIndex - startPreIndex) {
             // 右子树有元素,构建右子树
             root.rightNode = ConstructCore(preOrder, leftPreOrderEndIndex + 1,
-                    endPreIndex, inOrder, rootInIndex + 1, endInIndex);
+                    endPreIndex, inOrder, rootInIndex + 1, endInIndex,"Right");
         }
+        //***** -_-
+
         return root;
     }
 
