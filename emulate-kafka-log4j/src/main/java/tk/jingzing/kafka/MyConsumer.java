@@ -20,7 +20,7 @@ import java.util.concurrent.Executors;
 
 public class MyConsumer {
 
-    private static final String ZOOKEEPER = "45.32.12.187:2181";
+    private static final String ZOOKEEPER = "192.168.40.212:2181";
     //groupName可以随意给，因为对于kafka里的每条消息，每个group都会完整的处理一遍
     private static final String GROUP_NAME = "test_group";
     private static final String TOPIC_NAME = "kafka";

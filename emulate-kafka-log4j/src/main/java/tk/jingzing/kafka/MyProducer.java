@@ -18,7 +18,7 @@ public class MyProducer {
 
     private static final String TOPIC = "kafka";
     private static final String CONTENT = "This is a single message";
-    private static final String BROKER_LIST = "45.32.12.187:9093";
+    private static final String BROKER_LIST = "192.168.40.212:9093";
     private static final String SERIALIZER_CLASS = "kafka.serializer.StringEncoder";
 
     public static void main(String[] args) {
