@@ -13,13 +13,7 @@ import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-/**
- * @Description:用于消费kafka中的信息
- * Created by Louis Wang on 2016/7/26.
- */
-
 public class MyConsumer {
-
     private static final String ZOOKEEPER = "192.168.40.212:2181";
     //groupName可以随意给，因为对于kafka里的每条消息，每个group都会完整的处理一遍
     private static final String GROUP_NAME = "test_group";
@@ -40,24 +34,23 @@ public class MyConsumer {
 
         // create 4 partitions of the stream for topic “test”, to allow 4
         // threads to consume
-        Map<String,List<KafkaStream<byte[],byte[]>>> topicMessageStreams = consumerConnector.createMessageStreams(
-                ImmutableMap.<String, Integer>of(TOPIC_NAME,PARTITION_NUM));
+        Map<String, List<KafkaStream<byte[], byte[]>>> topicMessageStreams = consumerConnector
+                .createMessageStreams(ImmutableMap.of(TOPIC_NAME, PARTITION_NUM));
         List<KafkaStream<byte[], byte[]>> streams = topicMessageStreams.get(TOPIC_NAME);
 
         // create list of 4 threads to consume from each of the partitions
         ExecutorService executor = Executors.newFixedThreadPool(CONSUMER_NUM);
 
         // consume the messages in the threads
-        for (final KafkaStream<byte[],byte[]> stream : streams){
+        for (final KafkaStream<byte[], byte[]> stream : streams) {
             executor.submit(new Runnable() {
                 public void run() {
-                    for (MessageAndMetadata<byte[],byte[]> msgAndMetadata : stream){
+                    for (MessageAndMetadata<byte[], byte[]> msgAndMetadata : stream) {
                         // process message (msgAndMetadata.message())
                         System.out.println(new String(msgAndMetadata.message()));
                     }
                 }
             });
         }
-}
-
+    }
 }
