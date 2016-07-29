@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Properties;
 
 public class MyProducer {
-    private static final String TOPIC = "kafka";
+    private static final String TOPIC = "kafka2";
     private static final String CONTENT = "This is a single message";
     private static final String BROKER_LIST = "192.168.40.212:9092";
     private static final String SERIALIZER_CLASS = "kafka.serializer.StringEncoder";
