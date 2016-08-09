@@ -1,2 +1,1 @@
-# JingJourney
-Life,Happy,Work,Fun,Tomorrow
+工作中知识积累
