@@ -11,6 +11,7 @@
     <modules>
         <module>simple-service</module>
         <module>simple-service-webapp</module>
+        <module>jax-guide-ch02</module>
     </modules>
 
 
