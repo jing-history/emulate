@@ -3,6 +3,7 @@ package tk.jingzing.jax.annotation.method;
 
 import org.apache.log4j.Logger;
 import tk.jingzing.jax.domain.Book;
+import tk.jingzing.jax.domain.Books;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -39,9 +40,9 @@ public class EBookResourceImpl implements BookResource {
     }
 
 
-    /*@Override
+    @Override
     public boolean moveBooks(Books books) {
     	LOGGER.debug("MOVE method");
         return true;
-    }*/
+    }
 }

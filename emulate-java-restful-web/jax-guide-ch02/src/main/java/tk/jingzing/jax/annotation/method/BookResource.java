@@ -2,6 +2,7 @@ package tk.jingzing.jax.annotation.method;
 
 
 import tk.jingzing.jax.domain.Book;
+import tk.jingzing.jax.domain.Books;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -25,6 +26,6 @@ public interface BookResource {
     @DELETE
     public void delete(@QueryParam("bookId") final long bookId);
 
-    /*@MOVE
-    public boolean moveBooks(Books books);*/
+    @MOVE
+    public boolean moveBooks(Books books);
 }
