@@ -11,6 +11,7 @@
 
     <groupId>tk.jingzing.book</groupId>
     <artifactId>jax-guide-ch02</artifactId>
+    <packaging>war</packaging>
 
     <properties>
         <JDK.version>1.8</JDK.version>
